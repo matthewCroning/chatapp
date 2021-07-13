@@ -1,0 +1,27 @@
+
+<app-create-room></app-create-room>
+<app-list-chatrooms [roomSelected]=roomId (roomChanged)="roomChangedHandler($event)"></app-list-chatrooms>
+<ng-container *ngIf="room">
+    <ng-container *ngFor="let message of room.messages">
+        <p>
+            {{ message }}
+        </p>
+    </ng-container>
+</ng-container>
+
+<ng-container *ngIf="room">
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <input [(ngModel)]="message" class="width-100" type="text">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+            <button (click)="sendMessage(roomId ,message)">Send Message</button>
+            </div>
+        </div>
+    </div>
+    
+</ng-container>
