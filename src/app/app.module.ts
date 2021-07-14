@@ -11,7 +11,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChatroomComponent } from './chatroom/chatroom.component';
 import { CreateRoomComponent } from './chatroom/create-room/create-room.component';
 import { ListChatroomsComponent } from './chatroom/list-chatrooms/list-chatrooms.component';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+   
 const config: SocketIoConfig = { url: 'http://localhost:4444', options: {} };
 
 @NgModule({
@@ -29,7 +30,8 @@ const config: SocketIoConfig = { url: 'http://localhost:4444', options: {} };
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

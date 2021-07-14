@@ -3,3 +3,28 @@
 .width-100{
     width: 100%;
 }
+
+button:focus {
+    outline: none !important;
+    outline:0;
+}
+
+.hide-x-axis{
+    overflow-x: hidden !important;
+}
+
+.hide-overflow{
+    overflow: hidden;
+}
+
+.height-80{
+    height: 90vh;
+}
+
+.padding-bottom-10{
+    margin-bottom: 10px;
+}
+
+.padding-right-10{
+    margin-right: 10px;
+}

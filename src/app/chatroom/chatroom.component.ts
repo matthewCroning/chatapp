@@ -1,6 +1,6 @@
 import { AuthService } from './../services/auth.service';
 import { ChatroomService } from './../services/chatroom.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -9,10 +9,12 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./chatroom.component.scss']
 })
 export class ChatroomComponent implements OnInit {
-
+  @ViewChild('messageBox',  {static: false}) private messageBox: ElementRef;
+  @HostListener('document:keypress', ['$event'])
   private _roomSub: Subscription;
   room;
   roomId;
+  message;
   constructor(private ChatroomService: ChatroomService, private AuthService: AuthService) {
  
    }
@@ -21,14 +23,24 @@ export class ChatroomComponent implements OnInit {
     this.roomId = roomId;
     this.ChatroomService.getRoom(roomId);
     console.log(roomId);
+    this.scrollToBottom();
   }
 
   sendMessage(room, message){
-    console.log("room name: " + room);
-    console.log("message: " + message);
-    message = this.AuthService.getUsername() + " : " + message;
-    this.ChatroomService.sendMessage(room, message);
-    console.log("room: " + room)
+    if(this.room){
+      console.log("room name: " + room);
+      console.log("message: " + message);
+      message = this.AuthService.getUsername() + " : " + message;
+      this.ChatroomService.sendMessage(room, message);
+      console.log("room: " + room);
+      this.message = "";
+    }
+  }
+
+  scrollToBottom(): void {
+    try {
+        this.messageBox.nativeElement.scrollTop = this.messageBox.nativeElement.scrollHeight;
+    } catch(err) { }                 
   }
 
   ngOnInit() {
@@ -45,4 +57,8 @@ export class ChatroomComponent implements OnInit {
     this._roomSub.unsubscribe();
   }
 
+
+  
+
+ 
 }

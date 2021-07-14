@@ -1,11 +1,35 @@
-    <div class="row">
-        <div class="col-12">
-            <h2>Room Name</h2>
-            <input [(ngModel)]="roomName" class="width-100" type="text" >
-        </div>
+
+<div class="row">
+    <div class="col-2">
+        <button class="btn btn-primary padding-bottom-10" (click)="open(mymodal)">+</button>
     </div>
-    <div class="row">
-        <div class="col-12">
-            <button (click)="createRoom(roomName)">Create Room</button>
+</div>
+
+    <ng-template #mymodal let-modal>
+        <div class="modal-header">
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-outline-primary" [class.active]="s">
+                  <input type="radio" name="options" id="option1" [(ngModel)]="s" [value]="true"> Join
+                </label>
+                <label class="btn btn-outline-primary" [class.active]="!s">
+                  <input type="radio" name="options" id="option2" [(ngModel)]="s" [value]="false"> Create
+                </label>
+              </div>
         </div>
-    </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-12">
+                    <h2>Room Name</h2>
+                    <input [(ngModel)]="roomName" class="form-control width-100" type="text" (keydown.enter)="createRoom(roomName)">
+                </div>
+            </div>
+            
+        
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="close  btn btn-primary" aria-label="Close" (click)="modal.dismiss('Cross click')">
+                <span aria-hidden="true">Exit</span>
+            </button>
+            <button class="btn btn-primary" (click)="createRoom(roomName)">Create</button>
+        </div>
+      </ng-template>

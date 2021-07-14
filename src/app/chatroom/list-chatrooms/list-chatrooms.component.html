@@ -1,8 +1,10 @@
-<h1>
-    Rooms
-</h1>
-<ng-container *ngFor="let room of rooms">
-    <p (click)=changeRoom(room)>
-        {{ room | json}}
-    </p>
-</ng-container>
+<input [(ngModel)]="filterInput" class="form-control width-100" type="text" (keydown)="filterRooms(filterInput)">
+
+<div class="overflow-auto height-80">
+    <ng-container *ngFor="let room of filteredRooms">
+        <button [id]="room" class="width-100 hide-overflow btn btn-outline-primary padding-bottom-10" (click)="changeRoom(room); onClick($event)">
+            {{ room | json}}
+        </button>
+        <br>
+    </ng-container>
+</div>

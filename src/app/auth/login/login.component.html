@@ -5,19 +5,19 @@
     <div class="row">
         <div class="col-12">
             <h2>Username</h2>
-            <input class="width-100" type="text" >
+            <input [(ngModel)]="loginData.username" class="width-100" type="text" >
         </div>
     </div>
     <div class="row">
         <div class="col-12">
             <h2>Password</h2>
-            <input class="width-100" type="password">
+            <input [(ngModel)]="loginData.password" class="width-100" type="password">
         </div>
     </div>
     <br>
     <div class="row">
         <div class="col-12">
-            <button class="width-100">Login</button>
+            <button class="width-100" (click)="login()">Login</button>
         </div>
     </div>
 </div>

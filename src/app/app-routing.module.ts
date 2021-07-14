@@ -6,6 +6,7 @@ import { ChatroomComponent } from './chatroom/chatroom.component';
 import { AuthGuard } from './interceptor/auth.guard';
 
 const routes: Routes = [
+  { path: '',   redirectTo: 'chatroom', pathMatch: 'full' },
   {
     path: 'login',
     component: LoginComponent,

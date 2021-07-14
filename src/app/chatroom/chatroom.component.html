@@ -1,27 +1,40 @@
 
-<app-create-room></app-create-room>
-<app-list-chatrooms [roomSelected]=roomId (roomChanged)="roomChangedHandler($event)"></app-list-chatrooms>
-<ng-container *ngIf="room">
-    <ng-container *ngFor="let message of room.messages">
-        <p>
-            {{ message }}
-        </p>
-    </ng-container>
-</ng-container>
+<div class="container">
+<div class="row">
+    <div class="col-2 hide-x-axis">
+        <app-create-room></app-create-room>
 
-<ng-container *ngIf="room">
+        <app-list-chatrooms [roomSelected]=roomId (roomChanged)="roomChangedHandler($event)"></app-list-chatrooms>
+    </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <input [(ngModel)]="message" class="width-100" type="text">
+    <div class="col-10 ">
+        <ng-container *ngIf="room">
+          
+            <div #messageBox class="overflow-auto height-80">
+            <h1>Room: {{ roomId }}</h1>
+            <ng-container *ngFor="let message of room.messages">
+                <p>
+                    {{ message }}
+                </p>
+            </ng-container>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-            <button (click)="sendMessage(roomId ,message)">Send Message</button>
+        </ng-container>
+    
+      
+    </div>
+
+</div>
+</div>
+<div id="footer">
+    <div class="container">
+    <div class="row">
+            <div class="col-11">
+                <input [(ngModel)]="message" class="form-control width-100" type="text"  (keydown.enter)="sendMessage(roomId ,message)">
+            </div>
+            <div class="col-1">
+                <button class="btn btn-primary width-100" (click)="sendMessage(roomId ,message)">Send</button>
             </div>
         </div>
     </div>
-    
-</ng-container>
+</div>
+
